@@ -8,6 +8,12 @@
 # $ ./setup-cloud.sh
 # $ rm setup-cloud.sh
 
+if [ "$EUID" -ne 0 ]
+then
+	echo "Skal køres som root. Er du sikker på du ikke allerede har gjort det en gang før?"
+	exit
+fi
+
 function ask() {
 	read -p "$1 (j/N): "
 	case $(echo $REPLY | tr '[A-Z]' '[a-z]') in
